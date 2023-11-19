@@ -21,15 +21,26 @@ const dy = 0;
 const dw = 575;
 const dh = 523;
 let fx = 0;
-let fy = 0;
+let fy = 4;
 let gameFrame = 0;
 const staggerFrames = 5;
+const spriteAnimatios = [];
+const animationStates = [
+    {
+        name: "idle",
+        frames: 7,
+    },
+    {
+        name: "jump",
+        frames: 7,
+    },
+];
 
 function animate(ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position =Math.floor(gameFrame / staggerFrames) % 6;
+    let position = Math.floor(gameFrame / staggerFrames) % 11;
     fx = sw * position;
-    ctx.drawImage(playerImage, fx * sw, fy * sh, sw, sh, dx, dy, dw, dh);
+    ctx.drawImage(playerImage, fx, fy * sh, sw, sh, dx, dy, dw, dh);
     gameFrame++;
     requestAnimationFrame(() => animate(ctx));
 }
